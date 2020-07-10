@@ -1,3 +1,29 @@
+<h2>Alta</h2>
+<div>
+  <form #addForm="ngForm">
+    <div>
+        <label>Id </label>
+        <input name="id" [(ngModel)]="newMember.id" required #id="ngModel"/>
+        <div *ngIf="id.invalid && id.touched">Este campo es obligatorio</div>
+    </div>
+    <div>
+        <label>Name </label>
+        <input name="name" [(ngModel)]="newMember.login" required minlength="6" #login="ngModel"/>
+        <div *ngIf="login.invalid && login.touched">
+          <div *ngIf="login.errors?.required">Este campo es obligatorio</div>
+          <div *ngIf="login.errors?.minlength">Minimo 6 carácteres</div>
+        </div>
+        <!-- {{login.errors | json}} -->
+    </div>
+    <div>
+        <label>Avatar </label>
+        <input name="avatar" type="file" accept="image/*"/>
+    </div>
+    <button [disabled]="addForm.invalid" (click)="add(); addForm.resetForm();">Añadir</button>
+  </form>
+</div>
+
+<h2>Listado</h2>
 <table>
   <thead>
     <tr>

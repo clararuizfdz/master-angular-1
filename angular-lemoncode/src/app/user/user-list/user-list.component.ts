@@ -9,14 +9,32 @@ import { MemberEntity } from '../../model/memberEntity';
 export class UserListComponent implements OnInit {
 
   members: MemberEntity[] = [];
+  newMember: MemberEntity;
 
   constructor() {
     fetch(`https://api.github.com/orgs/lemoncode/members`)
-    .then((response) => response.json())
-    .then((json) => this.members = json);
-   }
+      .then((response) => response.json())
+      .then((json) => this.members = json);
+
+    this.newMember = {
+      id: '',
+      login: '',
+      avatar_url: ''
+    };
+
+  }
 
   ngOnInit(): void {
+  }
+
+  add() {
+    this.members.push(this.newMember);
+
+    this.newMember = {
+      id: '',
+      login: '',
+      avatar_url: ''
+    };
   }
 
 }
