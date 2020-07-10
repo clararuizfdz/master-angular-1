@@ -24,6 +24,9 @@
 </div>
 
 <h2>Listado</h2>
+<div>
+  Buscar por email: <input [(ngModel)]="searchValue"/>  
+</div>
 <table>
   <thead>
     <tr>
@@ -33,7 +36,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let member of members">
+    <tr *ngFor="let member of members | searchByLogin:searchValue">
       <td>
         <img [src]="member.avatar_url" width="50" />
       </td>
@@ -41,7 +44,7 @@
         <span>{{member.id}}</span>
       </td>
       <td>
-        <span>{{member.login}}</span>
+        <span>{{member.login | uppercase | slice:0:3}}</span>
       </td>
     </tr>
   </tbody>

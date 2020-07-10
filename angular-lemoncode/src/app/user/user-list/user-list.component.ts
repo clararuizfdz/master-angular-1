@@ -10,6 +10,7 @@ export class UserListComponent implements OnInit {
 
   members: MemberEntity[] = [];
   newMember: MemberEntity;
+  searchValue: string = '';
 
   constructor() {
     fetch(`https://api.github.com/orgs/lemoncode/members`)

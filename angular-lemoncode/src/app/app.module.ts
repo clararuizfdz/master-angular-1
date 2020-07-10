@@ -8,6 +8,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { HighlightDirective } from './directives/highlight.directive';
+import { SearchByLoginPipe } from './pipes/search-by-login.pipe';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HighlightDirective } from './directives/highlight.directive';
     HeaderComponent,
     FooterComponent,
     UserListComponent,
-    HighlightDirective
+    HighlightDirective,
+    SearchByLoginPipe
   ],
   imports: [
     BrowserModule,
