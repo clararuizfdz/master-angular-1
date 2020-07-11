@@ -37,7 +37,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let member of members | searchByLogin:searchValue">
+    <tr *ngFor="let member of members | searchByLogin:searchValue" (click)="select(member)">
       <td>
         <img [src]="member.avatar_url" width="50" />
       </td>
@@ -50,3 +50,27 @@
     </tr>
   </tbody>
 </table>
+
+<div *ngIf="selectedMember">
+    <h2>Datos de {{selectedMember.id}}</h2>
+    <form [formGroup] = "editForm">
+      <div>
+          <label>Id: {{selectedMember.id}} </label>
+      </div>  
+      <div>
+          <label>Name </label>
+          <input name="name" formControlName="login"/>
+          <div *ngIf="editForm.get('login').invalid">
+            <div>El nombre es obligatorio</div>
+            <div>El nombre debe tener X caracteres mínimo. Tiene sólamente X caracteres.</div>
+          </div>
+      </div>
+      <div>
+          <label>Avatar </label>
+          <input name="avatar" type="file" (change)="handleEditFileInput($event.target.files)" accept="image/*"/>
+          <div><img [src]="editForm.get('avatar_url').value" width="50" /></div>
+      </div>
+      <button [disabled]="editForm.invalid" (click)="save()">Guardar</button>
+    </form>
+  </div>
+  
