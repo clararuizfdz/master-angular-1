@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MemberEntity } from '../../model/memberEntity';
+import { MembersService } from '../../services/members.service';
 
 @Component({
   selector: 'app-user-list',
@@ -12,11 +13,12 @@ export class UserListComponent implements OnInit {
   newMember: MemberEntity;
   searchValue: string = '';
 
-  constructor() {
-    fetch(`https://api.github.com/orgs/lemoncode/members`)
-      .then((response) => response.json())
-      .then((json) => this.members = json);
+  constructor(membersService: MembersService) {
 
+    membersService.getAll().then(
+      json => this.members = json
+    );
+    
     this.newMember = {
       id: '',
       login: '',
