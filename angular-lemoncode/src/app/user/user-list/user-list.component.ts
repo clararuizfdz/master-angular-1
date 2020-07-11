@@ -30,6 +30,14 @@ export class UserListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  handleFileInput(files: FileList) {
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = (event) => {
+      this.newMember.avatar_url = reader.result as string;
+    };
+  }
+
   add() {
     this.members.push(this.newMember);
 

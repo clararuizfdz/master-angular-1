@@ -17,7 +17,8 @@
     </div>
     <div>
         <label>Avatar </label>
-        <input name="avatar" type="file" accept="image/*"/>
+        <input name="avatar" (change)="handleFileInput($event.target.files)" type="file" accept="image/*"/>
+        <div><img [src]="newMember.avatar_url" width="50" /></div>
     </div>
     <button [disabled]="addForm.invalid" (click)="add(); addForm.resetForm();">Añadir</button>
   </form>
